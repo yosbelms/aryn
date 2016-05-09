@@ -92,10 +92,10 @@ aryn.module(function(run, send, receive){
 })
 ```
 
-> The rest of this document assumes using `aryn.global()` for all the following code snipets.
+> The rest of this document assumes using `aryn.global()` for all the following code snippets.
 
 ## Runners
-Runners (a.k.a. tasks or coroutines) are lightweight scheduled functions. It accepts *Generator Function*s as the first parametter. Aryn takes advantage of the native scheduler, that is, there is not a custom scheduler implementation. Runners along with Channels are the main pieces of the Aryn CSP approach.
+Runners (a.k.a. tasks or coroutines) are lightweight scheduled functions. It accepts *Generator Function*s as the first parameter. Aryn takes advantage of the native scheduler, that is, there is not a custom scheduler implementation. Runners along with Channels are the main pieces of the Aryn CSP approach.
 
 ### runner(gen: GeneratorFunction): Function
 Returns a function that executes a new runner each time it is called.
@@ -133,11 +133,11 @@ A stream is an unbuffered (but not synchronic) channel which satisfies certain r
 ### chan(bufferSize?: Number, transform?: Function): Channel
 Creates a new `channel`. If `transform` is given then each value will be transformed on send.
 ```js
-var ch  = chan()  // unbufferd channel
+var ch  = chan()  // unbuffered channel
 var bch = chan(5) // buffered channel which its buffer size is 5
 ```
 
-With tranformers:
+With transformers:
 ```js
 var ch = chan(3, function(v){ return v * 2 })
 
@@ -256,7 +256,7 @@ filt(person) // {name: 'Yosbel', age: 28}
 ```
 
 ### sender(channel: Channel, filter: Function): Function
-Returns a function that sends its arguments to a channel each time it is called. The channel will receive the function's arguments in th form of an array.
+Returns a function that sends its arguments to a channel each time it is called. The channel will receive the function's arguments in the form of an array.
 ```js
 var ch = chan()
 var sendr = sender(ch)
@@ -264,7 +264,7 @@ var sendr = sender(ch)
 sendr(1, 2) // an array equal to [1, 2] will be sent
 ```
 
-The true usefulness of this function is when used with events. Example:
+The true usefulness of this function is when used with events. For example:
 ```js
 $('.button').on('click', sender(ch))
 // send the event's parameters to the channel on each click
